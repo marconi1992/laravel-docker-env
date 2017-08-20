@@ -1,0 +1,21 @@
+web:
+  image: nginx:latest
+  ports:
+    - 80:80
+  volumes:
+    - ./laravel:/app
+    - ./docker/config/site.conf:/etc/nginx/conf.d/site.conf
+  links:
+    - php:php
+php:
+  build: ./docker/images/php
+  volumes:
+    - ./laravel:/app
+  links:
+    - mysql:mysql
+mysql:
+  image: mysql:latest
+  ports:
+    - 3306:3306
+  environment:
+    - MYSQL_ROOT_PASSWORD=12345
