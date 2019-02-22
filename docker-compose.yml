@@ -4,7 +4,7 @@ web:
     - 80:80
   volumes:
     - ./laravel:/app
-    - ./docker/config/site.conf:/etc/nginx/conf.d/site.conf
+    - ./docker/conf.d:/etc/nginx/conf.d
   links:
     - php:php
 php:
